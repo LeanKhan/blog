@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="What is Fs-Pro sef?FS-Pro stands for Football Simulator Pro. Pro doesn’t have a particular meaning yet. At first it was ‘professional’ but that sounded too serious. And it implied that there was an ‘u">
+<meta name="keywords" content="fs-pro-client,frontend,code,yarns">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Tale of Rewrites: FsProClient">
+<meta property="og:url" content="http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="What is Fs-Pro sef?FS-Pro stands for Football Simulator Pro. Pro doesn’t have a particular meaning yet. At first it was ‘professional’ but that sounded too serious. And it implied that there was an ‘u">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/football-simulator-1.png">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/fixtures-old.png">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/fixtures-newer.png">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/match-view.png">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/file-structure-1.png">
+<meta property="og:image" content="http://leankhan.github.io/blog/images/transfer-hub-1.png">
+<meta property="og:updated_time" content="2019-08-21T21:28:28.056Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Tale of Rewrites: FsProClient">
+<meta name="twitter:description" content="What is Fs-Pro sef?FS-Pro stands for Football Simulator Pro. Pro doesn’t have a particular meaning yet. At first it was ‘professional’ but that sounded too serious. And it implied that there was an ‘u">
+<meta name="twitter:image" content="http://leankhan.github.io/blog/images/football-simulator-1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>A Tale of Rewrites: FsProClient</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a
+    id="top-icon-tablet"
+    href="#"
+    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+    style="display:none;"
+    ><i class="fas fa-chevron-up fa-lg"></i
+  ></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+        <li>
+          <a href="/blog/"
+            >./</a
+          >
+        </li>
+        
+        <li>
+          <a href="https://leankhan.github.io/"
+            >../home</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/posts/"
+            >./posts</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/tags/"
+            >./tags</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/categories/"
+            >./categories</a
+          >
+        </li>
+        
+      </ul>
+    </span>
+    <br />
+    <span id="actions">
+      <ul>
+         
+        <li>
+          <a class="icon" href="/blog/2019-08-07/hello-world/"
+            ><i
+              class="fas fa-chevron-right"
+              aria-hidden="true"
+              onmouseover="$('#i-next').toggle();"
+              onmouseout="$('#i-next').toggle();"
+            ></i
+          ></a>
+        </li>
+        
+        <li>
+          <a
+            class="icon"
+            href="#"
+            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+            ><i
+              class="fas fa-chevron-up"
+              aria-hidden="true"
+              onmouseover="$('#i-top').toggle();"
+              onmouseout="$('#i-top').toggle();"
+            ></i
+          ></a>
+        </li>
+        <!-- <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;"
+        >Previous post</span
+      >
+      <span id="i-next" class="info" style="display:none;"
+        >Next post</span
+      >
+      <span id="i-top" class="info" style="display:none;"
+        >Back to top</span
+      >
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br />
+    <!-- <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&text=A Tale of Rewrites: FsProClient"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&is_video=false&description=A Tale of Rewrites: FsProClient"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Tale of Rewrites: FsProClient&body=Check out this article: http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&name=A Tale of Rewrites: FsProClient&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div> -->
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Fs-Pro-sef"><span class="toc-number">1.</span> <span class="toc-text">What is Fs-Pro sef?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-decided-to-rewrite-it-in-Vue"><span class="toc-number">2.</span> <span class="toc-text">I decided to rewrite it in Vue.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#So-Vue-innit"><span class="toc-number">3.</span> <span class="toc-text">So Vue innit?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-decided-to-rewrite-it-in-Angular-hohohoho"><span class="toc-number">4.</span> <span class="toc-text">I decided to rewrite it in Angular hohohoho</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Beht-why-tho"><span class="toc-number">5.</span> <span class="toc-text">Beht why tho?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wawu-so-if-this-is-FsProClient-what-about-the-server"><span class="toc-number">6.</span> <span class="toc-text">wawu, so if this is FsProClient what about the server?</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        A Tale of Rewrites: FsProClient
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2019-08-15T23:25:27.576Z" itemprop="datePublished">2019-08-16</time>
+        
+        (Updated: <time datetime="2019-08-21T21:28:28.056Z" itemprop="dateModified">2019-08-21</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/fs-pro/">fs-pro</a> › <a class="category-link" href="/blog/categories/fs-pro/fs-pro-client/">fs-pro-client</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/code/">code</a>, <a class="tag-link" href="/blog/tags/frontend/">frontend</a>, <a class="tag-link" href="/blog/tags/fs-pro-client/">fs-pro-client</a>, <a class="tag-link" href="/blog/tags/yarns/">yarns</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h4 id="What-is-Fs-Pro-sef"><a href="#What-is-Fs-Pro-sef" class="headerlink" title="What is Fs-Pro sef?"></a><em>What is Fs-Pro sef?</em></h4><p>FS-Pro stands for Football Simulator Pro. Pro doesn’t have a particular meaning yet. At first it was ‘professional’ but that sounded too serious. And it implied that there was an ‘unprofessional’ version of the game??? So No.</p>
+<!-- TODO:
+    - Add image of initial site
+    - Add link to football-simulator repo ? Maybe not.
+ -->
+
+<p>FsPro is a football manager simulation game kini. I and my brother have this football game we play with our created teams and players, but it’s only a simulation. We use dice to produce results and record them with pen and paper, with league tables and all. One Friday February 22nd, 2:17pm I decided to automate it. What started out as a simple js file to randomize match results has turned into this <em>really-awesome-coding-exprience!</em>. For those few weeks when it was called ‘Football-Simulator’ I never wrote so much javascript in my life (I haven’t been writing js for that long anyways: &lt; a year), I stretched my knowledge of CSS, HTML and Javascript, I loved EVERYTHING. It was rough and gritty but it worked.</p>
+<p><small><u>Early days when everything was on one page</u></small><br><img src="/blog/images/football-simulator-1.png" alt="Football Simulator first working version" title="Football Simulator early days"></p>
+<p>I created an Express server to serve the <code>index.html</code> page with one javascript file and connected it to a MongoDB database, we played our three leagues and everything was fine. </p>
+<p><small><u>Early fixtures page</u></small><br><img src="/blog/images/fixtures-old.png" alt="Old fixtures page" title="Old fixtures page"></p>
+<p><small><u>Newer fixtures page</u></small><br><img src="/blog/images/fixtures-newer.png" alt="Newer fixtures page" title="New fixtures page"></p>
+<p><small><u>The glorious match page (so proud of this ᕦ( ᴼ ڡ ᴼ )ᕤ)</u></small><br><img src="/blog/images/match-view.png" alt="Match center" title="Match center"></p>
+<!-- ![football simulator first](/blog/images/football-simulator-1.png "Football Simulator early days") -->
+<p>Until we wanted to add more functionality.</p>
+<p>We wanted to make it realer. This meant:</p>
+<ul>
+<li>Increasing the number of players from 7 to 11</li>
+<li>Adding functionality to buy, sell and trade players i.e create a Transfer Hub</li>
+<li>Add web sockets for real time communication between managers (us)</li>
+</ul>
+<!-- TODO:
+    - Add image of file structure under
+ -->
+
+<p>Each part of our app was a separate html file so it meant I would have to register sockets for each page? tough.<br>Then there was the Transfer Hub. Where you can buy and sell players. As I began working on it I noticed more and more parts of the app needed to be dynamic and I was repeating A LOT of things. I was stuck tbh. I started making the transfer hub April 20th. Didn’t do anything till May 23rd. Then on May 25th, I couldn’t continue.</p>
+<p><small><u>File structure of the Express app</u></small><br><img src="/blog/images/file-structure-1.png" alt="Football Simulator file structure"></p>
+<p><small><u>Transfer Hub right about when I got stuck =(</u></small><br><img src="/blog/images/transfer-hub-1.png" alt="Transfer hub before I got stuck"></p>
+<!-- TODO:
+    - Add links to Vue website
+ -->
+
+<h4 id="I-decided-to-rewrite-it-in-Vue"><a href="#I-decided-to-rewrite-it-in-Vue" class="headerlink" title="I decided to rewrite it in Vue."></a>I decided to rewrite it in <a href="https://vuejs.org" target="_blank" rel="noopener">Vue</a>.</h4><p>(╯°□°）╯︵ ┻━┻</p>
+<p>Here it became ‘FsPro’</p>
+<blockquote>
+<h4 id="So-Vue-innit"><a href="#So-Vue-innit" class="headerlink" title="So Vue innit?"></a><em>So Vue innit?</em></h4></blockquote>
+<p>I chose Vue because I liked it. Using a framework meant I wouldn’t have to repeat code and it’s easier to make some things dynamic but I missed writing my <em>vanilla</em> JavaScript.</p>
+<p>Other pros were:</p>
+<ul>
+<li>Better routing</li>
+<li>Faster development</li>
+<li>Babel. Meaning I could run it on the old iPad I used for testing</li>
+</ul>
+<p>My setup was Vue + <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener">TypeScript</a> (because I wanted share code ,like classes and interfaces, with the server).</p>
+<p>Things were going alright until I was adding more views. I didn’t know how to structure my codebase in the form of ‘modules’ so I could separate concerns and all. That bothered me for a while. So…</p>
+<h4 id="I-decided-to-rewrite-it-in-Angular-hohohoho"><a href="#I-decided-to-rewrite-it-in-Angular-hohohoho" class="headerlink" title="I decided to rewrite it in Angular hohohoho"></a>I decided to rewrite it in <a href="https://angular.io" target="_blank" rel="noopener">Angular</a> <em>hohohoho</em></h4><!-- TODO:
+    - Add links to Angular website
+ -->
+
+<p>┻━┻ ︵╰(°□°)╯︵ ┻━┻</p>
+<p>I knowwww.</p>
+<blockquote>
+<h4 id="Beht-why-tho"><a href="#Beht-why-tho" class="headerlink" title="Beht why tho?"></a><em>Beht why tho?</em></h4></blockquote>
+<p>The first framework I used was Angular. I started learning Vue after I got frustrated with Angular and its complexity. But for a few months now I have been working on a team whose main frontend stack is Angular. So obviously I had to use it then. During that time, I began to appreciate the framework even more. We were building a large scale enterprise app so I got to see Angular being used in that capacity. It was during that time that I decided to move it to Angular.</p>
+<p>The pros of choosing Angular:</p>
+<!-- TODO:
+    - Add emoji here
+ -->
+
+<ul>
+<li>It’s modular architecture is perfect for FsPro. It’s easier for me to understand</li>
+<li>Supports TypeScript out of the box. Awesome!</li>
+<li>It feels more ‘solid’ :3</li>
+</ul>
+<p>While <em>searching</em> for a UI framework for <a href="https://github.com/LeanKhan/fs-pro-client" target="_blank" rel="noopener">FsProClient</a> I ‘discovered’ this Angular Admin UI framework called <a href="https://akveo.github.io/nebular/" target="_blank" rel="noopener">Nebular</a> based on Bootstrap 4. A Godsend really, I was giving up on writing frontend code :#, but thank God. It’s easy to use and flexible like Bootsrap Vue or something similar and has cool Angular components like <a href="https://material.angular.io" target="_blank" rel="noopener">Angular Material</a> (but not enough, Material is a whole ‘nother beast)</p>
+<p>So that’s the setup now. Angular 8 + Nebular UI system. I made the repo public from the beginning because I need epp.</p>
+<p>Find it <a href="https://github.com/LeanKhan/fs-pro-client" target="_blank" rel="noopener">here</a>.</p>
+<p>I am so proud of what FsPro is turning out to be, it has great potential. I don’t even know what it really is yet.</p>
+<p>From February 22nd when I made the first commit in Football Simulator to August 14th when I initialized FsProClient, I think we have tried. </p>
+<p>Hopefully no more rewrites :)))</p>
+<blockquote>
+<h4 id="wawu-so-if-this-is-FsProClient-what-about-the-server"><a href="#wawu-so-if-this-is-FsProClient-what-about-the-server" class="headerlink" title="wawu, so if this is FsProClient what about the server?"></a><em>wawu, so if this is FsProClient what about the server?</em></h4></blockquote>
+<p><small>I would write a post about it soon ─=≡Σ((( つ◕ل͜◕)つ</small></p>
+<!-- TODO:
+    - Beg Joshua to review it.
+    - Rename the screenshots appropriately and add them where necessarry.
+    - Add emojis where appropriate? nah.
+ -->
+
+<p>Thank you Jesus! &lt;3</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">./</a></li>
+         
+          <li><a href="https://leankhan.github.io/">../home</a></li>
+         
+          <li><a href="/blog/posts/">./posts</a></li>
+         
+          <li><a href="/blog/tags/">./tags</a></li>
+         
+          <li><a href="/blog/categories/">./categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#What-is-Fs-Pro-sef"><span class="toc-number">1.</span> <span class="toc-text">What is Fs-Pro sef?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-decided-to-rewrite-it-in-Vue"><span class="toc-number">2.</span> <span class="toc-text">I decided to rewrite it in Vue.</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#So-Vue-innit"><span class="toc-number">3.</span> <span class="toc-text">So Vue innit?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#I-decided-to-rewrite-it-in-Angular-hohohoho"><span class="toc-number">4.</span> <span class="toc-text">I decided to rewrite it in Angular hohohoho</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Beht-why-tho"><span class="toc-number">5.</span> <span class="toc-text">Beht why tho?</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#wawu-so-if-this-is-FsProClient-what-about-the-server"><span class="toc-number">6.</span> <span class="toc-text">wawu, so if this is FsProClient what about the server?</span></a></li></ol>
+    </div>
+
+    <!-- <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&text=A Tale of Rewrites: FsProClient"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&is_video=false&description=A Tale of Rewrites: FsProClient"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=A Tale of Rewrites: FsProClient&body=Check out this article: http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&title=A Tale of Rewrites: FsProClient"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://leankhan.github.io/blog/2019-08-16/a-tale-of-rewrites-fsproclient/&name=A Tale of Rewrites: FsProClient&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div> -->
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2019 Emmanuel Segun-Lean
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">./</a></li>
+         
+          <li><a href="https://leankhan.github.io/">../home</a></li>
+         
+          <li><a href="/blog/posts/">./posts</a></li>
+         
+          <li><a href="/blog/tags/">./tags</a></li>
+         
+          <li><a href="/blog/categories/">./categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
