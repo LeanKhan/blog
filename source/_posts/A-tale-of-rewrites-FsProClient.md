@@ -1,44 +1,46 @@
 ---
-title: "A tale of rewrites: FsProClient"
-date: 2019-08-16 00:25:27
+title: "A Tale of Rewrites: FsProClient"
 tags:
   - fs-pro-client
   - frontend
   - code
   - yarns
 categories:
-  - technologies
+  - fs-pro
   - fs-pro-client
 ---
-
-# A Tale of Rewrites: FsProClient
-
-<!-- TODO:
-    - Ask about this title
- -->
-
 #### _What is Fs-Pro sef?_
 
-FS-Pro stands for Football Simulator _Pro_. Pro doesn't have a particular meaning yet. At first it was 'professional' but that sounded too serious. It'll come.
+FS-Pro stands for Football Simulator Pro. Pro doesn't have a particular meaning yet. At first it was 'professional' but that sounded too serious. And it implied that there was an 'unprofessional' version of the game??? So No.
 
 <!-- TODO:
     - Add image of initial site
-    - Add link to football-simulator repo
+    - Add link to football-simulator repo ? Maybe not.
  -->
 
-FsPro is a football manager simulation game kini. I and my brother have this football game we play, but it's only a simulation. We use dice to simulate results and record them with pen and paper: with league tables and all. One Friday February 22nd, 2:17pm I decided to automate it. What started out as a simple js file to randomize match results has turned into this _really awesome coding exprience!_. For those few weeks when it was called 'Football-Simulator' I never wrote so much javascript in my life (I haven't been writing js for that long anyways; < 1 yr>), I stretched my knowledge of CSS and frontend development so much, I loved EVERYTHING. It was rough and gritty but it worked.
-I created an Express server to serve the `index.html` page with one javascript file and connected it to a MongoDB database, we played our three leagues and everything was fine.
+FsPro is a football manager simulation game kini. I and my brother have this football game we play with our created teams and players, but it's only a simulation. We use dice to produce results and record them with pen and paper, with league tables and all. One Friday February 22nd, 2:17pm I decided to automate it. What started out as a simple js file to randomize match results has turned into this _really-awesome-coding-exprience!_. For those few weeks when it was called 'Football-Simulator' I never wrote so much javascript in my life (I haven't been writing js for that long anyways: < a year), I stretched my knowledge of CSS, HTML and Javascript, I loved EVERYTHING. It was rough and gritty but it worked.
 
+<small><u>Early days when everything was on one page</u></small>
+![Football Simulator first working version](/blog/images/football-simulator-1.png "Football Simulator early days")
+
+I created an Express server to serve the `index.html` page with one javascript file and connected it to a MongoDB database, we played our three leagues and everything was fine. 
+
+<small><u>Early fixtures page</u></small>
+![Old fixtures page](/blog/images/fixtures-old.png "Old fixtures page")
+
+<small><u>Newer fixtures page</u></small>
+![Newer fixtures page](/blog/images/fixtures-newer.png "New fixtures page")
+
+<small><u>The glorious match page (so proud of this ᕦ( ᴼ ڡ ᴼ )ᕤ)</u></small>
+![Match center](/blog/images/match-view.png "Match center")
+
+<!-- ![football simulator first](/blog/images/football-simulator-1.png "Football Simulator early days") -->
 Until we wanted to add more functionality.
-
-<!-- TODO:
-    - Add images of old app here
- -->
 
 We wanted to make it realer. This meant:
 
-- Increasing the number of players to 11 from 7
-- Adding functionality to buy, sell and trade players
+- Increasing the number of players from 7 to 11
+- Adding functionality to buy, sell and trade players i.e create a Transfer Hub
 - Add web sockets for real time communication between managers (us)
 
 <!-- TODO:
@@ -48,39 +50,44 @@ We wanted to make it realer. This meant:
 Each part of our app was a separate html file so it meant I would have to register sockets for each page? tough.
 Then there was the Transfer Hub. Where you can buy and sell players. As I began working on it I noticed more and more parts of the app needed to be dynamic and I was repeating A LOT of things. I was stuck tbh. I started making the transfer hub April 20th. Didn't do anything till May 23rd. Then on May 25th, I couldn't continue.
 
+<small><u>File structure of the Express app</u></small>
+![Football Simulator file structure](/blog/images/file-structure-1.png)
+
+<small><u>Transfer Hub right about when I got stuck =(</u></small>
+![Transfer hub before I got stuck](/blog/images/transfer-hub-1.png)
+
 <!-- TODO:
     - Add links to Vue website
  -->
 
-#### I decided to rewrite it in Vue.
+#### I decided to rewrite it in [Vue](https://vuejs.org).
 
-_gasp_
+(╯°□°）╯︵ ┻━┻
 
-I know.
+Here it became 'FsPro'
 
 > #### _So Vue innit?_
 
-I chose Vue because I liked it. Using a framework meant I wouldn't have to repeat code and I it's easir to make some things dynamic. But I missed writing my JavaScript _vanilla_ yunno?
+I chose Vue because I liked it. Using a framework meant I wouldn't have to repeat code and it's easier to make some things dynamic but I missed writing my _vanilla_ JavaScript.
 
 Other pros were:
 
 - Better routing
 - Faster development
-- Babel. Meaning I could run it on the old iPad we used for testing
+- Babel. Meaning I could run it on the old iPad I used for testing
 
-My setup was Vue + TypeScript because I wanted to share classes and interfaces with the server.
-But mehn, setting up was not beans.
+My setup was Vue + [TypeScript](https://www.typescriptlang.org/) (because I wanted share code ,like classes and interfaces, with the server).
 
-Things were going alright until I was adding more views. I didn;t know how to structure my codebase in the form of 'modules' so I could separate concerns and all. That bothered me for a while. So...
+Things were going alright until I was adding more views. I didn't know how to structure my codebase in the form of 'modules' so I could separate concerns and all. That bothered me for a while. So...
 
-#### I decided to rewrite it in Angular _hohohoho_
+#### I decided to rewrite it in [Angular](https://angular.io) _hohohoho_
 
 <!-- TODO:
     - Add links to Angular website
  -->
 
-_gasp x2_
-
+┻━┻ ︵╰(°□°)╯︵ ┻━┻
+ 
 I knowwww.
 
 > #### _Beht why tho?_
@@ -93,30 +100,30 @@ The pros of choosing Angular:
     - Add emoji here
  -->
 
-- It's modular architecture is perfect for FsPro. It's easier for me to understand.
-- Supports TypeScript out of the box. - Awesome!
-- It feels more 'solid'. (not an actual pro) lol
+- It's modular architecture is perfect for FsPro. It's easier for me to understand
+- Supports TypeScript out of the box. Awesome!
+- It feels more 'solid' :3
 
-<!-- TODO:
-    - Add links to Nebular
- -->
+While _searching_ for a UI framework for [FsProClient](https://github.com/LeanKhan/fs-pro-client) I 'discovered' this Angular Admin UI framework called [Nebular](https://akveo.github.io/nebular/) based on Bootstrap 4. A Godsend really, I was giving up on writing frontend code :#, but thank God. It's easy to use and flexible like Bootsrap Vue or something similar and has cool Angular components like [Angular Material](https://material.angular.io) (but not enough, Material is a whole 'nother beast)
 
-So that's the setup now. Angular 8 + Nebular UI system. The repo is public from the onset because I need epp.
+So that's the setup now. Angular 8 + Nebular UI system. I made the repo public from the beginning because I need epp.
 
-Find it {{ here }}.
+Find it [here](https://github.com/LeanKhan/fs-pro-client).
 
 I am so proud of what FsPro is turning out to be, it has great potential. I don't even know what it really is yet.
 
-From February 22nd when I made the first commit in Football Simulator to August 14th when I initialized FsProClient, we have tried. Hopefully no more rewrites :)))
+From February 22nd when I made the first commit in Football Simulator to August 14th when I initialized FsProClient, I think we have tried. 
+
+Hopefully no more rewrites :)))
 
 > #### _wawu, so if this is FsProClient what about the server?_
 
-Read about it {{ here }}
+<small>I would write a post about it soon ─=≡Σ((( つ◕ل͜◕)つ</small>
 
 <!-- TODO:
     - Beg Joshua to review it.
     - Rename the screenshots appropriately and add them where necessarry.
-    - Add emojis where appropriate
+    - Add emojis where appropriate? nah.
  -->
 
 Thank you Jesus! <3
