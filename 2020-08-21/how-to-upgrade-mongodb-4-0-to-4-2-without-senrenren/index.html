@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Blog">
 <meta property="og:description" content="How to upgrade MongoDB 4.0 to 4.2 without senrenrenI needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writi">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-08-21T15:57:40.119Z">
+<meta property="og:updated_time" content="2020-08-21T16:06:36.901Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="How to upgrade Mongodb 4.0 to 4.2 without senrenren">
 <meta name="twitter:description" content="How to upgrade MongoDB 4.0 to 4.2 without senrenrenI needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writi">
@@ -181,7 +181,7 @@
       
         <time datetime="2020-08-21T15:05:52.000Z" itemprop="datePublished">2020-08-21</time>
         
-        (Updated: <time datetime="2020-08-21T15:57:40.119Z" itemprop="dateModified">2020-08-21</time>)
+        (Updated: <time datetime="2020-08-21T16:06:36.901Z" itemprop="dateModified">2020-08-21</time>)
         
       
     </div>
@@ -207,22 +207,20 @@
 
   <div class="content" itemprop="articleBody">
     <h3 id="How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren"><a href="#How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren" class="headerlink" title="How to upgrade MongoDB 4.0 to 4.2 without senrenren"></a>How to upgrade MongoDB 4.0 to 4.2 without senrenren</h3><p>I needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writing this so you don’t have to be sad, friend ( ͡ᵔ ͜ʖ ͡ᵔ ).</p>
-<ul>
-<li>Download the new Mongo version from their website. I use windows so I got the msi installer. Don’t install it yet if you want.</li>
-<li>Create a backup of your current database:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Open cmd and go to where your current Mongo is then run mongodump. This will create a backup of all your databases into a folder called &apos;dump&apos;. Make a copy of that folder somewhere else...</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Uninstall your current MongoDB; delete the ‘4.0’ folder. No fear you have a backup</li>
-<li>Now install that new MongoDB version you got. And make sure to update your system path variables if necessary</li>
-<li>Restore the backup you created earlier:</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Run mongorestore in the bin folder of your new installation. Open mongo shell and run _show dbs_ to confirm the databases are back</span><br></pre></td></tr></table></figure>
-
-<ul>
-<li>Start the Mongo service if it’s not running already</li>
-</ul>
+<ol>
+<li><p>Download the new Mongo version from their website. I use windows so I got the msi installer. Don’t install it yet if you want.</p>
+</li>
+<li><p>Create a backup of your current database:<br>Open cmd and go to where your current Mongo is then run mongodump. This will create a backup of all your databases into a folder called ‘dump’. Make a copy of that folder somewhere else…</p>
+</li>
+<li><p>Uninstall your current MongoDB; delete the ‘4.0’ folder. No fear you have a backup</p>
+</li>
+<li><p>Now install that new MongoDB version you got. And make sure to update your system path variables if necessary</p>
+</li>
+<li><p>Restore the backup you created earlier:<br>Run mongorestore in the bin folder of your new installation. Open mongo shell and run <em>show dbs</em> to confirm the databases are back</p>
+</li>
+<li><p>Start the Mongo service if it’s not running already</p>
+</li>
+</ol>
 <p>That’s it. No senrenren</p>
 <hr>
 <p>sources:</p>
