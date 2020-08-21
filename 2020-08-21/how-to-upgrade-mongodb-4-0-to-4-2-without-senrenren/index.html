@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang=en>
+<head><meta name="generator" content="Hexo 3.9.0">
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="How to upgrade MongoDB 4.0 to 4.2 without senrenrenI needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writi">
+<meta name="keywords" content="dev,mongodb,no-senrenren,code">
+<meta property="og:type" content="article">
+<meta property="og:title" content="How to upgrade Mongodb 4.0 to 4.2 without senrenren">
+<meta property="og:url" content="http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/index.html">
+<meta property="og:site_name" content="Blog">
+<meta property="og:description" content="How to upgrade MongoDB 4.0 to 4.2 without senrenrenI needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writi">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-08-21T15:57:40.119Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="How to upgrade Mongodb 4.0 to 4.2 without senrenren">
+<meta name="twitter:description" content="How to upgrade MongoDB 4.0 to 4.2 without senrenrenI needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writi">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/blog/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/blog/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/blog/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>How to upgrade Mongodb 4.0 to 4.2 without senrenren</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/blog/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/blog/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a
+    id="top-icon-tablet"
+    href="#"
+    onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+    style="display:none;"
+    ><i class="fas fa-chevron-up fa-lg"></i
+  ></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+        
+        <li>
+          <a href="/blog/"
+            >./</a
+          >
+        </li>
+        
+        <li>
+          <a href="https://leankhan.github.io/"
+            >../home</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/posts/"
+            >./posts</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/tags/"
+            >./tags</a
+          >
+        </li>
+        
+        <li>
+          <a href="/blog/categories/"
+            >./categories</a
+          >
+        </li>
+        
+      </ul>
+    </span>
+    <br />
+    <span id="actions">
+      <ul>
+         
+        <li>
+          <a class="icon" href="/blog/2020-02-29/it-s-the-institutions-duh/"
+            ><i
+              class="fas fa-chevron-right"
+              aria-hidden="true"
+              onmouseover="$('#i-next').toggle();"
+              onmouseout="$('#i-next').toggle();"
+            ></i
+          ></a>
+        </li>
+        
+        <li>
+          <a
+            class="icon"
+            href="#"
+            onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"
+            ><i
+              class="fas fa-chevron-up"
+              aria-hidden="true"
+              onmouseover="$('#i-top').toggle();"
+              onmouseout="$('#i-top').toggle();"
+            ></i
+          ></a>
+        </li>
+        <!-- <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;"
+        >Previous post</span
+      >
+      <span id="i-next" class="info" style="display:none;"
+        >Next post</span
+      >
+      <span id="i-top" class="info" style="display:none;"
+        >Back to top</span
+      >
+      <!-- <span id="i-share" class="info" style="display:none;">Share post</span> -->
+    </span>
+    <br />
+    <!-- <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&text=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&is_video=false&description=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to upgrade Mongodb 4.0 to 4.2 without senrenren&body=Check out this article: http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&name=How to upgrade Mongodb 4.0 to 4.2 without senrenren&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div> -->
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren"><span class="toc-number">1.</span> <span class="toc-text">How to upgrade MongoDB 4.0 to 4.2 without senrenren</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        How to upgrade Mongodb 4.0 to 4.2 without senrenren
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">Blog</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-08-21T15:05:52.000Z" itemprop="datePublished">2020-08-21</time>
+        
+        (Updated: <time datetime="2020-08-21T15:57:40.119Z" itemprop="dateModified">2020-08-21</time>)
+        
+      
+    </div>
+
+
+      
+    <div class="article-category">
+        <i class="fas fa-archive"></i>
+        <a class="category-link" href="/blog/categories/dev/">dev</a>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/blog/tags/code/">code</a>, <a class="tag-link" href="/blog/tags/dev/">dev</a>, <a class="tag-link" href="/blog/tags/mongodb/">mongodb</a>, <a class="tag-link" href="/blog/tags/no-senrenren/">no-senrenren</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren"><a href="#How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren" class="headerlink" title="How to upgrade MongoDB 4.0 to 4.2 without senrenren"></a>How to upgrade MongoDB 4.0 to 4.2 without senrenren</h3><p>I needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writing this so you don’t have to be sad, friend ( ͡ᵔ ͜ʖ ͡ᵔ ).</p>
+<ul>
+<li>Download the new Mongo version from their website. I use windows so I got the msi installer. Don’t install it yet if you want.</li>
+<li>Create a backup of your current database:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Open cmd and go to where your current Mongo is then run mongodump. This will create a backup of all your databases into a folder called &apos;dump&apos;. Make a copy of that folder somewhere else...</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Uninstall your current MongoDB; delete the ‘4.0’ folder. No fear you have a backup</li>
+<li>Now install that new MongoDB version you got. And make sure to update your system path variables if necessary</li>
+<li>Restore the backup you created earlier:</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Run mongorestore in the bin folder of your new installation. Open mongo shell and run _show dbs_ to confirm the databases are back</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>Start the Mongo service if it’s not running already</li>
+</ul>
+<p>That’s it. No senrenren</p>
+<hr>
+<p>sources:</p>
+<p><a href="https://stackoverflow.com/questions/57710084/can-not-access-mongodb-data-after-upgrade-from-4-0-to-4-2" target="_blank" rel="noopener">https://stackoverflow.com/questions/57710084/can-not-access-mongodb-data-after-upgrade-from-4-0-to-4-2</a></p>
+<p><a href="https://www.tutorialspoint.com/mongodb/mongodb_create_backup." target="_blank" rel="noopener">Create backups with mongodump and mongorestore</a></p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/blog/">./</a></li>
+         
+          <li><a href="https://leankhan.github.io/">../home</a></li>
+         
+          <li><a href="/blog/posts/">./posts</a></li>
+         
+          <li><a href="/blog/tags/">./tags</a></li>
+         
+          <li><a href="/blog/categories/">./categories</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-upgrade-MongoDB-4-0-to-4-2-without-senrenren"><span class="toc-number">1.</span> <span class="toc-text">How to upgrade MongoDB 4.0 to 4.2 without senrenren</span></a></li></ol>
+    </div>
+
+    <!-- <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&text=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&is_video=false&description=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=How to upgrade Mongodb 4.0 to 4.2 without senrenren&body=Check out this article: http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&title=How to upgrade Mongodb 4.0 to 4.2 without senrenren"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://leankhan.github.io/blog/2020-08-21/how-to-upgrade-mongodb-4-0-to-4-2-without-senrenren/&name=How to upgrade Mongodb 4.0 to 4.2 without senrenren&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div> -->
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <!-- <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2020 Emmanuel Segun-Lean
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/blog/">./</a></li>
+         
+          <li><a href="https://leankhan.github.io/">../home</a></li>
+         
+          <li><a href="/blog/posts/">./posts</a></li>
+         
+          <li><a href="/blog/tags/">./tags</a></li>
+         
+          <li><a href="/blog/categories/">./categories</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+<link rel="stylesheet" href="/blog/lib/font-awesome/css/all.min.css">
+<link rel="stylesheet" href="/blog/lib/justified-gallery/css/justifiedGallery.min.css">
+
+    <!-- jquery -->
+<script src="/blog/lib/jquery/jquery.min.js"></script>
+<script src="/blog/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/blog/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
