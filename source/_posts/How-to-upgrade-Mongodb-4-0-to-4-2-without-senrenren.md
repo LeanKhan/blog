@@ -10,8 +10,6 @@ categories:
   - dev
 ---
 
-### How to upgrade MongoDB 4.0 to 4.2 without senrenren
-
 I needed to update my MongdoDB from 4.0 to 4.2 I was not sure how to go about it and thought I lost my data at a point and was soo sad. So I am writing this so you don't have to be sad, friend ( ͡ᵔ ͜ʖ ͡ᵔ ).
 
 1. Download the new Mongo version from their website. I use windows so I got the msi installer. Don't install it yet if you want.
